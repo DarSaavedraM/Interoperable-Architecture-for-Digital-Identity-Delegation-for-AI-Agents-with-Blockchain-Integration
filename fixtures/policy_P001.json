@@ -1,0 +1,12 @@
+{
+  "id": "P-001",
+  "trusted_issuers": ["did:example:bank"],
+  "alg_allowlist": ["EdDSA"],
+  "holder_binding_required": true,
+  "max_delegation_depth": 3,
+  "status_ttl_seconds": 120,
+  "clock_skew_seconds": 5,
+  "require_anchor": false,
+  "status_required": true
+}
+

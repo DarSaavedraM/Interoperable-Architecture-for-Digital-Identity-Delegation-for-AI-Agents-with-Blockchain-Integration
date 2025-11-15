@@ -1,0 +1,11 @@
+{
+  "presentation": {
+    "type": "VC-JWT",
+    "jwt": "eyJhbGciOiJFZERTQSIsImtpZCI6ImJhbmstZWQyNTUxOS0xIiwidHlwIjoiSldUIn0.eyJpc3MiOiJkaWQ6ZXhhbXBsZTpiYW5rIiwic3ViIjoiZGlkOmV4YW1wbGU6aG9sZGVyIiwibmJmIjoxNzM1NjAwMDAwLCJleHAiOjE4OTM0NTYwMDAsInZjIjp7InR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiLCJBY2NvdW50VmVyaWZpZWQiXSwiY3JlZGVudGlhbFN0YXR1cyI6eyJ0eXBlIjoiU3RhdHVzTGlzdDIwMjFFbnRyeSIsInN0YXR1c0xpc3RJbmRleCI6MCwic3RhdHVzTGlzdENyZWRlbnRpYWwiOiJodHRwczovL2xvY2FsaG9zdC9zdGF0dXMvc3RhdHVzbGlzdDIwMjFfYWN0aXZlLmpzb24ifSwiY3JlZGVudGlhbFN1YmplY3QiOnsiaWQiOiJkaWQ6ZXhhbXBsZTpob2xkZXIiLCJhY2NvdW50VmVyaWZpZWQiOnRydWV9fX0.eW07P9Y4NszTJ45b_SNf7dKo4FS_YV9vmuk6h_UqEycMiOlneTGZ_5HH3LVDJmEUddKW3pX9U7Ar-wf7js_UCQ"
+  },
+  "policy_id": "P-001",
+  "holder_binding": {
+    "type": "JWS",
+    "proof": "demo-nonce-761"
+  }
+}

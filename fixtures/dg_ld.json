@@ -1,0 +1,49 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://www.w3.org/2018/credentials/examples/v1"
+  ],
+  "id": "https://example.com/delegations/dg1",
+  "type": ["DelegationGrant", "VerifiableCredential"],
+  "issuer": {
+    "id": "did:example:holder"
+  },
+  "issuanceDate": "2025-01-01T00:00:00Z",
+  "validFrom": "2025-01-01T00:00:00Z",
+  "validUntil": "2030-01-01T00:00:00Z",
+  "credentialSubject": {
+    "id": "did:example:agent1",
+    "delegation": {
+      "scope": {
+        "resource": "payments:transfer",
+        "actions": ["initiate", "quote"]
+      },
+      "keyBinding": {
+        "kid": "agent1-ed25519-1"
+      },
+      "status": {
+        "type": "StatusList2021",
+        "url": "https://localhost/status/statuslist2021_active.json"
+      },
+      "constraints": {
+        "aud": "did:example:verifier",
+        "nonTransferable": true
+      }
+    }
+  },
+  "credentialStatus": {
+    "id": "https://localhost/status/statuslist2021_active.json#0",
+    "type": "StatusList2021Entry",
+    "statusListIndex": 0,
+    "statusListCredential": "https://localhost/status/statuslist2021_active.json"
+  },
+  "proof": {
+    "type": "BbsBlsSignature2020",
+    "created": "2025-01-01T00:00:00Z",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "did:example:holder#key-1",
+    "proofValue": "mock-proof-value-for-demo"
+  }
+}
+
+

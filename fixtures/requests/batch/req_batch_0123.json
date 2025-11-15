@@ -1,0 +1,48 @@
+{
+  "presentation": {
+    "type": "VC-LD",
+    "credential": {
+      "@context": [
+        "https://www.w3.org/2018/credentials/v1",
+        "https://www.w3.org/2018/credentials/examples/v1"
+      ],
+      "id": "https://example.com/credentials/3732",
+      "type": [
+        "VerifiableCredential",
+        "AccountVerified"
+      ],
+      "issuer": {
+        "id": "did:example:bank"
+      },
+      "issuanceDate": "2025-01-01T00:00:00Z",
+      "validFrom": "2025-01-01T00:00:00Z",
+      "validUntil": "2030-01-01T00:00:00Z",
+      "credentialSubject": {
+        "id": "did:example:holder_23",
+        "accountVerified": true
+      },
+      "credentialStatus": {
+        "id": "https://localhost/status/statuslist2021_active.json#0",
+        "type": "StatusList2021Entry",
+        "statusListIndex": 0,
+        "statusListCredential": "https://localhost/status/statuslist2021_active.json"
+      },
+      "proof": {
+        "type": "BbsBlsSignature2020",
+        "created": "2025-01-01T00:00:00Z",
+        "proofPurpose": "assertionMethod",
+        "verificationMethod": "did:example:bank#key-1",
+        "proofValue": "mock-proof-value-for-demo"
+      }
+    }
+  },
+  "policy_id": "P-001",
+  "holder_binding": {
+    "type": "JWS",
+    "proof": "demo-nonce-123"
+  },
+  "delegation_chain": [
+    "eyJhbGciOiJFZERTQSIsImtpZCI6ImJhbmstZWQyNTUxOS0xIiwidHlwIjoiSldUIn0.eyJkZ19qd3QiOiJleUpoYkdjaU9pSkZaRVJUUVNJc0ltdHBaQ0k2SW1KaGJtc3RaV1F5TlRVeE9TMHhJaXdpZEhsd0lqb2lTbGRVSW4wLmV5SnBjM01pT2lKa2FXUTZaWGhoYlhCc1pUcG9iMnhrWlhJaUxDSnpkV0lpT2lKa2FXUTZaWGhoYlhCc1pUcGhaMlZ1ZERFaUxDSnVZbVlpT2pFM016VTJNREF3TURBc0ltVjRjQ0k2TVRnNU16UTFOakF3TUN3aVpHY2lPbnNpYzJOdmNHVWlPbnNpY21WemIzVnlZMlVpT2lKd1lYbHRaVzUwY3pwMGNtRnVjMlpsY2lJc0ltRmpkR2x2Ym5NaU9sc2lhVzVwZEdsaGRHVWlMQ0p4ZFc5MFpTSmRmU3dpYTJWNVgySnBibVJwYm1jaU9uc2lhMmxrSWpvaVlXZGxiblF4TFdWa01qVTFNVGt0TVNKOUxDSnpkR0YwZFhNaU9uc2lkSGx3WlNJNklsTjBZWFIxYzB4cGMzUXlNREl4SWl3aWRYSnNJam9pYUhSMGNITTZMeTlzYjJOaGJHaHZjM1F2YzNSaGRIVnpMM04wWVhSMWMyeHBjM1F5TURJeFgyRmpkR2wyWlM1cWMyOXVJbjBzSW1OdmJuTjBjbUZwYm5SeklqcDdJbUYxWkNJNkltUnBaRHBsZUdGdGNHeGxPblpsY21sbWFXVnlJaXdpYm05dVgzUnlZVzV6Wm1WeVlXSnNaU0k2ZEhKMVpYMTlmUS56VGZEekJra3pxeURRX1JqM2ZFNXF4OGF1RGs2Q3ZvS25qT1p5a0JfNTc1MVNFYXBsVlpyUkVrX0xOVUVsS0RXbGVLa01KcWdyMm1talhORHdTNWtDZyIsImRnIjp7InNjb3BlIjp7ImFjdGlvbnMiOlsiaW5pdGlhdGUiLCJxdW90ZSIsImFwcHJvdmUiXSwicmVzb3VyY2UiOiJwYXltZW50czp0cmFuc2ZlciJ9LCJzdGF0dXMiOnsidHlwZSI6IlN0YXR1c0xpc3QyMDIxIiwidXJsIjoiaHR0cHM6Ly9sb2NhbGhvc3Qvc3RhdHVzL3N0YXR1c2xpc3QyMDIxX2FjdGl2ZS5qc29uIn0sImtleV9iaW5kaW5nIjp7ImtpZCI6ImFnZW50MC1lZDI1NTE5LTEifX0sIm5iZiI6MTczNTYwMDAwMCwiZXhwIjoxODkzNDU2MDAwLCJpc3MiOiJkaWQ6ZXhhbXBsZTpob2xkZXIiLCJzdWIiOiJkaWQ6ZXhhbXBsZTphZ2VudDBfMjMifQ.gj_ieT0KEXouAxNYt3utMebPPgv5E-VaALhiPtuqFgTxATGNUG0kOgzq3PMgUqkJa-5X0hrdLEbfH8pw-1XXBg",
+    "eyJhbGciOiJFZERTQSIsImtpZCI6ImJhbmstZWQyNTUxOS0xIiwidHlwIjoiSldUIn0.eyJkZ19qd3QiOiJleUpoYkdjaU9pSkZaRVJUUVNJc0ltdHBaQ0k2SW1KaGJtc3RaV1F5TlRVeE9TMHhJaXdpZEhsd0lqb2lTbGRVSW4wLmV5SnBjM01pT2lKa2FXUTZaWGhoYlhCc1pUcGhaMlZ1ZERFaUxDSnpkV0lpT2lKa2FXUTZaWGhoYlhCc1pUcGhaMlZ1ZERJaUxDSnVZbVlpT2pFM016VTJNREF3TURBc0ltVjRjQ0k2TVRnNU16UTFOakF3TUN3aVpHY2lPbnNpYzJOdmNHVWlPbnNpY21WemIzVnlZMlVpT2lKd1lYbHRaVzUwY3pwMGNtRnVjMlpsY2lJc0ltRmpkR2x2Ym5NaU9sc2lhVzVwZEdsaGRHVWlYWDBzSW10bGVWOWlhVzVrYVc1bklqcDdJbXRwWkNJNkltRm5aVzUwTWkxbFpESTFOVEU1TFRFaWZTd2ljM1JoZEhWeklqcDdJblI1Y0dVaU9pSlRkR0YwZFhOTWFYTjBNakF5TVNJc0luVnliQ0k2SW1oMGRIQnpPaTh2Ykc5allXeG9iM04wTDNOMFlYUjFjeTl6ZEdGMGRYTnNhWE4wTWpBeU1WOWhZM1JwZG1VdWFuTnZiaUo5TENKamIyNXpkSEpoYVc1MGN5STZleUpoZFdRaU9pSmthV1E2WlhoaGJYQnNaVHAyWlhKcFptbGxjaUlzSW01dmJsOTBjbUZ1YzJabGNtRmliR1VpT25SeWRXVjlmWDAuN3hnWDYtRHBUOS1nS01YenRud2tQaGdOUUpSS1JieFlXX1hRVjcxbW5nU2k0MEdMdTRwS2QwWkNYaUIwQVU5d1ZSVnJCZzNyMWJTNm9YQ0FtcXByREEiLCJkZyI6eyJzY29wZSI6eyJhY3Rpb25zIjpbImluaXRpYXRlIiwiYXBwcm92ZSJdLCJyZXNvdXJjZSI6InBheW1lbnRzOnRyYW5zZmVyIn0sInN0YXR1cyI6eyJ0eXBlIjoiU3RhdHVzTGlzdDIwMjEiLCJ1cmwiOiJodHRwczovL2xvY2FsaG9zdC9zdGF0dXMvc3RhdHVzbGlzdDIwMjFfYWN0aXZlLmpzb24ifSwia2V5X2JpbmRpbmciOnsia2lkIjoiYWdlbnQxLWVkMjU1MTktMSJ9fSwibmJmIjoxNzM1NjAwMDAwLCJleHAiOjE4OTM0NTYwMDAsImlzcyI6ImRpZDpleGFtcGxlOmFnZW50MCIsInN1YiI6ImRpZDpleGFtcGxlOmFnZW50MV8yMyJ9.6IosfCFK-mxZ4IxaCrIk8Ao2Gcmt0ZFTdPVqX4n5J1r0vmE6n2eA40IpKeYXY1hlL82d4sfLbJeNabdKuwQRCg"
+  ]
+}

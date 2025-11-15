@@ -1,0 +1,44 @@
+{
+  "presentation": {
+    "type": "VC-LD",
+    "credential": {
+      "@context": [
+        "https://www.w3.org/2018/credentials/v1",
+        "https://www.w3.org/2018/credentials/examples/v1"
+      ],
+      "id": "https://example.com/credentials/3732",
+      "type": [
+        "VerifiableCredential",
+        "AccountVerified"
+      ],
+      "issuer": {
+        "id": "did:example:bank"
+      },
+      "issuanceDate": "2025-01-01T00:00:00Z",
+      "validFrom": "2025-01-01T00:00:00Z",
+      "validUntil": "2030-01-01T00:00:00Z",
+      "credentialSubject": {
+        "id": "did:example:holder_22",
+        "accountVerified": true
+      },
+      "credentialStatus": {
+        "id": "https://localhost/status/statuslist2021_active.json#0",
+        "type": "StatusList2021Entry",
+        "statusListIndex": 0,
+        "statusListCredential": "https://localhost/status/statuslist2021_active.json"
+      },
+      "proof": {
+        "type": "BbsBlsSignature2020",
+        "created": "2025-01-01T00:00:00Z",
+        "proofPurpose": "assertionMethod",
+        "verificationMethod": "did:example:bank#key-1",
+        "proofValue": "mock-proof-value-for-demo"
+      }
+    }
+  },
+  "policy_id": "P-001",
+  "holder_binding": {
+    "type": "JWS",
+    "proof": "demo-nonce-922"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "iss": "did:example:bank",
+  "sub": "did:example:holder",
+  "nbf": 1735600000,
+  "exp": 1893456000,
+  "vc": {
+    "type": ["VerifiableCredential", "AccountVerified"],
+    "credentialStatus": {
+      "type": "StatusList2021Entry",
+      "statusListIndex": 0,
+      "statusListCredential": "https://localhost/status/statuslist2021_active.json"
+    },
+    "credentialSubject": {
+      "id": "did:example:holder",
+      "accountVerified": true
+    }
+  }
+}
+

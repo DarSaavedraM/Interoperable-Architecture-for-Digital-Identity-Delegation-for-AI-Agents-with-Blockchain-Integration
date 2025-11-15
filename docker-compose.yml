@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8443:8443"
+    volumes:
+      - ./fixtures:/app/fixtures
+      - ./logs:/app/logs
+    environment:
+      - LOG_LEVEL=INFO
+    command: uvicorn gateway.main:app --host 0.0.0.0 --port 8443
+    networks:
+      - verification-network
+
+networks:
+  verification-network:
+    driver: bridge
+
+

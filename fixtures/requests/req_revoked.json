@@ -1,0 +1,11 @@
+{
+  "presentation": {
+    "type": "VC-JWT",
+    "jwt": "eyJhbGciOiJFZERTQSIsImtpZCI6ImJhbmstZWQyNTUxOS0xIiwidHlwIjoiSldUIn0.eyJpc3MiOiJkaWQ6ZXhhbXBsZTpiYW5rIiwic3ViIjoiZGlkOmV4YW1wbGU6aG9sZGVyIiwibmJmIjoxNzM1NjAwMDAwLCJleHAiOjE4OTM0NTYwMDAsInZjIjp7InR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiLCJBY2NvdW50VmVyaWZpZWQiXSwiY3JlZGVudGlhbFN0YXR1cyI6eyJ0eXBlIjoiU3RhdHVzTGlzdDIwMjFFbnRyeSIsInN0YXR1c0xpc3RJbmRleCI6MCwic3RhdHVzTGlzdENyZWRlbnRpYWwiOiJodHRwczovL2xvY2FsaG9zdC9zdGF0dXMvc3RhdHVzbGlzdDIwMjFfcmV2b2tlZC5qc29uIn0sImNyZWRlbnRpYWxTdWJqZWN0Ijp7ImlkIjoiZGlkOmV4YW1wbGU6aG9sZGVyIiwiYWNjb3VudFZlcmlmaWVkIjp0cnVlfX19.CMwrxbF1gkr1XN7q1doeM8HFn0HDUPVFAOtubt6bzS0uC1yfdtZm5y3JZoKQZ9qHsdl8jIc1BnaxrKhkrxlLCg"
+  },
+  "policy_id": "P-001",
+  "holder_binding": {
+    "type": "JWS",
+    "proof": "demo-nonce-signature"
+  }
+}

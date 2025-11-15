@@ -1,0 +1,11 @@
+{
+  "presentation": {
+    "type": "VC-JWT",
+    "jwt": "eyJhbGciOiJFZERTQSIsImtpZCI6ImJhbmstZWQyNTUxOS0xIiwidHlwIjoiSldUIn0.eyJpc3MiOiJkaWQ6ZXhhbXBsZTpiYW5rIiwic3ViIjoiZGlkOmV4YW1wbGU6aG9sZGVyXzEwIiwibmJmIjoxNzM1NjAwMDAwLCJleHAiOjE4OTM0NTYwMDAsInZjIjp7InR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiLCJBY2NvdW50VmVyaWZpZWQiXSwiY3JlZGVudGlhbFN0YXR1cyI6eyJ0eXBlIjoiU3RhdHVzTGlzdDIwMjFFbnRyeSIsInN0YXR1c0xpc3RJbmRleCI6MCwic3RhdHVzTGlzdENyZWRlbnRpYWwiOiJodHRwczovL2xvY2FsaG9zdC9zdGF0dXMvc3RhdHVzbGlzdDIwMjFfYWN0aXZlLmpzb24ifSwiY3JlZGVudGlhbFN1YmplY3QiOnsiaWQiOiJkaWQ6ZXhhbXBsZTpob2xkZXIiLCJhY2NvdW50VmVyaWZpZWQiOnRydWUsImFjY291bnRJZCI6IkFDQy0wNjEwIn19fQ.dsivdyykz2plLIkLRetDJi6Po8Ji2cLujCj0btigVnra0bTwN8TNsnLSN5_8VU-27m7g94DG6AL4KUqtT0u8CQ"
+  },
+  "policy_id": "P-001",
+  "holder_binding": {
+    "type": "JWS",
+    "proof": "demo-nonce-610"
+  }
+}

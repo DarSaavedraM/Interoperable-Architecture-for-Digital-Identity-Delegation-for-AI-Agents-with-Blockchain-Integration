@@ -1,0 +1,14 @@
+{
+  "iss": "did:example:holder",
+  "sub": "did:example:agent1",
+  "nbf": 1735600000,
+  "exp": 1893456000,
+  "dg": {
+    "scope": {"resource": "payments:transfer", "actions": ["initiate", "quote"]},
+    "key_binding": {"kid": "agent1-ed25519-1"},
+    "status": {"type": "StatusList2021", "url": "https://localhost/status/statuslist2021_revoked.json"},
+    "constraints": {"aud": "did:example:verifier", "non_transferable": true}
+  }
+}
+
+
