@@ -1,0 +1,173 @@
+@startuml Test_Scenarios_Separation
+!theme plain
+skinparam componentStyle rectangle
+skinparam backgroundColor #FAFAFA
+skinparam shadowing false
+skinparam linetype ortho
+skinparam roundcorner 10
+
+title Test Scenarios Separation
+
+' Top layer: Infrastructure
+package "Test Infrastructure" #F5F5F5 {
+    component [base.py] as Base
+}
+
+' Middle layer: Individual Tests
+package "Individual Test Scenarios" #E8F5E9 {
+    component [test_s1_federated.py] as S1
+    component [test_s2_ssi.py] as S2
+    component [test_s3_hybrid.py] as S3
+    component [test_s4_negative.py] as S4
+    component [test_s5_blockchain.py] as S5
+}
+
+' Bottom layer: Conjoint Suite and Data
+package "Conjoint Test Suite" #E3F2FD {
+    component [test_all_scenarios.py] as AllScenarios
+}
+
+package "Test Data" #FFF3E0 {
+    folder [fixtures/requests/] as Fixtures
+}
+
+' Vertical flow: Top to Bottom
+Base -[hidden]down- S1
+Base -[hidden]down- S2
+Base -[hidden]down- S3
+Base -[hidden]down- S4
+Base -[hidden]down- S5
+
+S1 -[hidden]down- AllScenarios
+S2 -[hidden]down- AllScenarios
+S3 -[hidden]down- AllScenarios
+S4 -[hidden]down- AllScenarios
+S5 -[hidden]down- AllScenarios
+
+S1 -[hidden]down- Fixtures
+S2 -[hidden]down- Fixtures
+S3 -[hidden]down- Fixtures
+S4 -[hidden]down- Fixtures
+S5 -[hidden]down- Fixtures
+
+' Actual dependencies
+Base --> S1 : uses
+Base --> S2 : uses
+Base --> S3 : uses
+Base --> S4 : uses
+Base --> S5 : uses
+
+S1 --> AllScenarios : calls
+S2 --> AllScenarios : calls
+S3 --> AllScenarios : calls
+S4 --> AllScenarios : calls
+S5 --> AllScenarios : calls
+
+AllScenarios --> Base : uses
+
+S1 ..> Fixtures : reads
+S2 ..> Fixtures : reads
+S3 ..> Fixtures : reads
+S4 ..> Fixtures : reads
+S5 ..> Fixtures : reads
+
+' Notes distributed vertically
+note top of Base
+    **Test Infrastructure**
+    
+    Functions:
+    - TestResult dataclass
+    - test_health()
+    - test_verification_request()
+    - get_base_dir()
+    - print_test_result()
+end note
+
+note left of S1
+    **S1: Federated Flow**
+    
+    Function: test_s1_federated_flow()
+    
+    Tests:
+    - VC-JWT credential
+    - Delegation chain (DG)
+    - OIDC4VP normalization
+end note
+
+note right of S2
+    **S2: SSI Flow**
+    
+    Function: test_s2_ssi_flow()
+    
+    Tests:
+    - VC-LD credential
+    - Linked Data format
+    - Delegation chain
+end note
+
+note left of S3
+    **S3: Hybrid Agent**
+    
+    Function: test_s3_hybrid_agent()
+    
+    Tests:
+    - Multi-agent scenarios
+    - Chain depth > 1
+    - Complex delegation
+end note
+
+note right of S4
+    **S4: Negative Cases**
+    
+    Function: test_s4_negative_cases()
+    
+    Tests error handling:
+    - Expired delegation
+    - Revoked credentials
+    - Scope violations
+end note
+
+note left of S5
+    **S5: Blockchain Anchor**
+    
+    Functions:
+    - test_without_anchor()
+    - test_with_anchor()
+    - test_anchor_storage()
+    - test_s5_blockchain()
+    
+    Tests:
+    - Anchor requirement
+    - Chain fingerprint
+    - Anchor storage
+end note
+
+note bottom of AllScenarios
+    **Conjoint Test Suite**
+    
+    Function: main()
+    
+    Features:
+    - Run all scenarios
+    - Selective execution
+    - Summary reporting
+    - Configurable via CLI
+end note
+
+legend right
+    |<#F5F5F5> **Infrastructure** |
+    Common test utilities
+    |
+    |<#E8F5E9> **Individual Tests** |
+    Scenario-specific tests
+    |
+    |<#E3F2FD> **Conjoint Suite** |
+    Integrated test runner
+    |
+    |<#FFF3E0> **Test Data** |
+    Request fixtures
+    |
+    |**Vertical flow** = Dependency direction |
+endlegend
+
+@enduml

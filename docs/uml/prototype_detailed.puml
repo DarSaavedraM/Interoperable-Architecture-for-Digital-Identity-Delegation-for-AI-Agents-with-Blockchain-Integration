@@ -1,0 +1,186 @@
+@startuml Prototype_Detailed
+!theme plain
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+skinparam shadowing false
+skinparam backgroundColor #FAFAFA
+skinparam maxMessageSize 60
+
+title Implemented Prototype - Detailed Structure
+
+package "gateway/" <<Trust Gateway>> #E8F5E9 {
+    class FastAPI {
+        + /verify: POST
+        + /verify/oidc4vp: POST
+        + /health: GET
+        + build_cvc()
+    }
+    
+    class VerificationRequest {
+        + presentation
+        + policy_id
+        + delegation_chain
+        + holder_binding
+    }
+    
+    class "adapters.py" {
+        + detect_profile()
+        + normalize_vc_jwt()
+        + normalize_vc_ld()
+        + parse_dg_jwts()
+    }
+    
+    class "policy.py" {
+        + load_policy()
+    }
+    
+    class "schemas.py" {
+        + VerificationRequest
+        + PresentationJWT
+        + PresentationLD
+    }
+    
+    class "config.py" {
+        + JWKS_BANK
+        + JWKS_VERIFIER
+        + ANCHOR_ENABLED
+    }
+}
+
+package "verifier/" <<Verification Engine>> #E3F2FD {
+    class "verifier.py" {
+        + verify_cvc()
+        + verify_delegation_chain()
+        + verify_vc_jwt()
+        + sign_vro()
+        + scope_subset()
+    }
+    
+    class "crypto.py" {
+        + verify_jws()
+        + jwks_get_key()
+        + key_exists_in_jwks()
+    }
+    
+    class "status.py" {
+        + fetch_status()
+        + is_revoked()
+    }
+    
+    class "anchor.py" {
+        + get_anchor_instance()
+        + create_mock_anchor()
+    }
+    
+    class BlockchainAnchor {
+        <<abstract>>
+        + anchor_chain_fingerprint()
+        + verify_anchor()
+    }
+    
+    class MockBlockchainAnchor {
+        + anchor_chain_fingerprint()
+        + verify_anchor()
+    }
+    
+    class "constants.py" {
+        + ErrorCode
+        + DETERMINISTIC_TIMESTAMP
+    }
+}
+
+package "scripts/" <<Utilities>> #FFF3E0 {
+    class "metrics_collector.py" {
+        + get_collector()
+    }
+    
+    class MetricsCollector {
+        + start_request()
+        + record_normalization_start()
+        + record_verification_start()
+        + record_result()
+        + get_metrics()
+    }
+}
+
+package "Data Structures" #F3E5F5 {
+    class CVC {
+        + I_issuer
+        + I_subject
+        + C
+        + pi
+        + Delta
+        + P
+        + S
+        + M
+    }
+    
+    class VRO {
+        + cvc_id
+        + timestamp
+        + policy_ref
+        + issuer
+        + subject
+        + delegation_chain_depth
+        + decision
+    }
+}
+
+' Gateway relationships
+FastAPI --> VerificationRequest
+FastAPI --> "adapters.py"
+FastAPI --> "policy.py"
+FastAPI --> "verifier.py"
+FastAPI --> "config.py"
+
+"adapters.py" --> "crypto.py"
+"adapters.py" --> CVC
+
+' Verifier relationships
+"verifier.py" --> CVC
+"verifier.py" --> "crypto.py"
+"verifier.py" --> "status.py"
+"verifier.py" --> "anchor.py"
+"verifier.py" --> "constants.py"
+"verifier.py" --> VRO
+
+"anchor.py" --> BlockchainAnchor
+MockBlockchainAnchor --|> BlockchainAnchor
+
+' Metrics (optional)
+FastAPI ..> MetricsCollector
+"verifier.py" ..> MetricsCollector
+
+' Data flow
+VerificationRequest ..> CVC
+CVC ..> VRO
+
+note right of "verifier.py"
+    **Core Functions:**
+    
+    verify_cvc()
+    - Structural validation
+    - Credential verification
+    - Delegation chain verification
+    - Policy evaluation
+    - VRO generation
+end note
+
+note right of MockBlockchainAnchor
+    **Mock Implementation:**
+    JSON file storage
+    Hash chain simulation
+    
+    Production: Real blockchain
+    (Ethereum, Hyperledger)
+end note
+
+note bottom of CVC
+    **Canonical Verification Context**
+    
+    Normalized structure enabling
+    format independence and
+    protocol agnosticism
+end note
+
+@enduml

@@ -1,0 +1,96 @@
+@startuml Verification_Flow_Sequence
+!theme plain
+autonumber
+skinparam backgroundColor #FAFAFA
+skinparam shadowing false
+skinparam sequenceArrowThickness 2
+skinparam roundcorner 10
+
+title Verification Flow - Sequence Diagram
+
+actor Client
+box "Trust Gateway" #E8F5E9
+    participant Gateway
+end box
+
+box "Verification Engine" #E3F2FD
+    participant Verifier
+end box
+
+box "Support Services" #FFF3E0
+    participant Crypto
+    participant Status
+    participant Anchor
+end box
+
+== Request Processing ==
+Client -> Gateway: POST /verify
+activate Gateway
+
+Gateway -> Gateway: 1. Load policy
+Gateway -> Gateway: 2. Detect profile\n(VC-JWT or VC-LD)
+Gateway -> Gateway: 3. Normalize to CVC
+note right of Gateway
+    **CVC Structure**
+    {I_issuer, I_subject, C, π, Δ, P, S, M}
+end note
+
+== Verification ==
+Gateway -> Verifier: verify_cvc(cvc)
+activate Verifier
+
+Verifier -> Verifier: Structural validation
+
+Verifier -> Crypto: Verify signature
+activate Crypto
+Crypto --> Verifier: Signature valid
+deactivate Crypto
+
+Verifier -> Verifier: Check temporal validity
+
+Verifier -> Status: Check revocation status
+activate Status
+Status --> Verifier: Not revoked
+deactivate Status
+
+== Delegation Chain (Optional) ==
+alt Has Delegation Chain
+    Verifier -> Verifier: verify_delegation_chain()
+    
+    loop For each DG in chain
+        Verifier -> Crypto: Verify DG signature
+        activate Crypto
+        Crypto --> Verifier: Valid
+        deactivate Crypto
+        
+        Verifier -> Status: Check DG status
+        activate Status
+        Status --> Verifier: Not revoked
+        deactivate Status
+        
+        Verifier -> Verifier: Verify scope containment
+        note right: scope(DG_{i+1}) ⊆ scope(DG_i)
+    end
+    
+    alt require_anchor == true
+        Verifier -> Anchor: Anchor chain fingerprint
+        activate Anchor
+        Anchor --> Verifier: Anchor proof
+        deactivate Anchor
+    end
+end
+
+== Response Generation ==
+Verifier -> Verifier: Build VRO
+Verifier -> Crypto: Sign VRO
+activate Crypto
+Crypto --> Verifier: VRO JWT
+deactivate Crypto
+
+Verifier --> Gateway: (success, vro_jwt)
+deactivate Verifier
+
+Gateway --> Client: Response {vro_jwt}
+deactivate Gateway
+
+@enduml
